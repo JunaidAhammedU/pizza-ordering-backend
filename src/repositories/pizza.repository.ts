@@ -17,16 +17,6 @@ export class PizzaBaseRepository extends BaseRepository<PizzaBase> {
       throw new Error(`Error finding available pizza bases: ${error}`);
     }
   }
-
-  async findByName(name: string): Promise<PizzaBase | null> {
-    try {
-      return await this.prisma.pizzaBase.findUnique({
-        where: { name },
-      });
-    } catch (error) {
-      throw new Error(`Error finding pizza base by name: ${error}`);
-    }
-  }
 }
 
 export class PizzaSizeRepository extends BaseRepository<PizzaSize> {
@@ -44,16 +34,6 @@ export class PizzaSizeRepository extends BaseRepository<PizzaSize> {
       throw new Error(`Error finding available pizza sizes: ${error}`);
     }
   }
-
-  async findByName(name: string): Promise<PizzaSize | null> {
-    try {
-      return await this.prisma.pizzaSize.findUnique({
-        where: { name },
-      });
-    } catch (error) {
-      throw new Error(`Error finding pizza size by name: ${error}`);
-    }
-  }
 }
 
 export class ToppingRepository extends BaseRepository<Topping> {
@@ -69,16 +49,6 @@ export class ToppingRepository extends BaseRepository<Topping> {
       });
     } catch (error) {
       throw new Error(`Error finding available toppings: ${error}`);
-    }
-  }
-
-  async findByName(name: string): Promise<Topping | null> {
-    try {
-      return await this.prisma.topping.findUnique({
-        where: { name },
-      });
-    } catch (error) {
-      throw new Error(`Error finding topping by name: ${error}`);
     }
   }
 

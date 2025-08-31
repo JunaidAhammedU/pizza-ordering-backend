@@ -11,7 +11,7 @@ export interface BaseEntity {
 export interface PizzaBase extends BaseEntity {
   name: string;
   description?: string | null;
-  price: number;
+  price: any; // Prisma Decimal type
   isAvailable: boolean;
 }
 
@@ -19,7 +19,7 @@ export interface PizzaBase extends BaseEntity {
 export interface PizzaSize extends BaseEntity {
   name: string;
   inches: number;
-  price: number;
+  price: any; // Prisma Decimal type
   isAvailable: boolean;
 }
 
@@ -27,7 +27,7 @@ export interface PizzaSize extends BaseEntity {
 export interface Topping extends BaseEntity {
   name: string;
   description?: string | null;
-  price: number;
+  price: any; // Prisma Decimal type
   isAvailable: boolean;
 }
 
@@ -37,7 +37,7 @@ export interface Order extends BaseEntity {
   customerEmail?: string | null;
   customerPhone?: string | null;
   status: OrderStatus;
-  totalAmount: number;
+  totalAmount: any; // Prisma Decimal type
   notes?: string | null;
   isDeleted: boolean;
   orderItems: OrderItem[];
@@ -49,8 +49,8 @@ export interface OrderItem extends BaseEntity {
   baseId: string;
   sizeId: string;
   quantity: number;
-  unitPrice: number;
-  totalPrice: number;
+  unitPrice: any; // Prisma Decimal type
+  totalPrice: any; // Prisma Decimal type
   notes?: string | null;
   base: PizzaBase;
   size: PizzaSize;
@@ -62,8 +62,8 @@ export interface OrderItemTopping extends BaseEntity {
   orderItemId: string;
   toppingId: string;
   quantity: number;
-  unitPrice: number;
-  totalPrice: number;
+  unitPrice: any; // Prisma Decimal type
+  totalPrice: any; // Prisma Decimal type
   topping: Topping;
 }
 
@@ -87,11 +87,6 @@ export interface CreateOrderItemDto {
 export interface CreateOrderItemToppingDto {
   toppingId: string;
   quantity: number;
-}
-
-export interface UpdateOrderDto {
-  status?: OrderStatus;
-  notes?: string;
 }
 
 // DTOs for responses
@@ -151,20 +146,3 @@ export interface ToppingResponseDto {
   isAvailable: boolean;
 }
 
-// Query types
-export interface OrderQueryParams {
-  page?: number;
-  limit?: number;
-  status?: OrderStatus;
-  customerName?: string;
-}
-
-export interface PaginatedResponse<T> {
-  data: T[];
-  pagination: {
-    page: number;
-    limit: number;
-    total: number;
-    totalPages: number;
-  };
-}

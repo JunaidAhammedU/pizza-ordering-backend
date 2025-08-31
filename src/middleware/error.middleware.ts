@@ -7,7 +7,7 @@ export const errorHandler = (
   error: Error,
   req: Request,
   res: Response,
-  next: NextFunction,
+  _next: NextFunction,
 ): void => {
   logger.error('Error occurred:', {
     error: error.message,
@@ -25,7 +25,7 @@ export const errorHandler = (
   // Handle Prisma errors
   if (error.name === 'PrismaClientKnownRequestError') {
     const prismaError = error as any;
-    
+
     switch (prismaError.code) {
       case 'P2002':
         sendError(res, 'A record with this unique field already exists', 409);

@@ -1,7 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 
 declare global {
-  // eslint-disable-next-line no-var
   var __prisma: PrismaClient | undefined;
 }
 
@@ -20,14 +19,5 @@ export const connectDatabase = async (): Promise<void> => {
   } catch (error) {
     console.error('❌ Database connection failed:', error);
     process.exit(1);
-  }
-};
-
-export const disconnectDatabase = async (): Promise<void> => {
-  try {
-    await prisma.$disconnect();
-    console.log('✅ Database disconnected successfully');
-  } catch (error) {
-    console.error('❌ Database disconnection failed:', error);
   }
 };

@@ -5,7 +5,6 @@ const prisma = new PrismaClient();
 async function main() {
     console.log('Starting database adding default data...');
 
-    // Create pizza bases
     const bases = await Promise.all([
         prisma.pizzaBase.upsert({
             where: { name: 'Thin Crust' },
